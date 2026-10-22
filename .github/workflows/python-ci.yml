@@ -1,0 +1,30 @@
+name: ASDD Experiment 3 CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check Python Version
+        run: python --version
+
+      - name: Check Python Syntax
+        run: python -m py_compile student.py
+
+      - name: CI Completed
+        run: echo "ASDD Experiment 3 CI Pipeline Successful"
